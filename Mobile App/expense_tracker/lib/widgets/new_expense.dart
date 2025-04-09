@@ -1,5 +1,3 @@
-
-
 import 'dart:io';
 
 import 'package:expense_tracker/models/expense.dart';
@@ -10,7 +8,7 @@ import 'package:intl/intl.dart';
 final formatter = DateFormat('dd/MM/yyyy'); // for formatting date
 
 class NewExpense extends StatefulWidget {
-  const NewExpense({super.key, required this.onAddExpense}); 
+  const NewExpense({super.key, required this.onAddExpense});
 
   final void Function(Expense expense) onAddExpense;
 
@@ -43,9 +41,11 @@ class _NewExpenseState extends State<NewExpense> {
   }
 
   showAlertDialog() {
-    if (Platform.isIOS){
-        showCupertinoDialog(context: context, builder: (ctx) => CupertinoAlertDialog(
-              title: const Text("Invalid Input"),
+    if (Platform.isIOS) {
+      showCupertinoDialog(
+        context: context,
+        builder: (ctx) => CupertinoAlertDialog(
+          title: const Text("Invalid Input"),
           content: const Text("Please make sure you have put valid details."),
           actions: [
             TextButton(
@@ -54,9 +54,10 @@ class _NewExpenseState extends State<NewExpense> {
                 },
                 child: const Text("Okay"))
           ],
-          ),);
-    }else{
-        showDialog(
+        ),
+      );
+    } else {
+      showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
           title: const Text("Invalid Input"),
@@ -71,7 +72,6 @@ class _NewExpenseState extends State<NewExpense> {
         ),
       );
     }
-      
   }
 
   void _submitExpenseData() {
@@ -81,17 +81,17 @@ class _NewExpenseState extends State<NewExpense> {
     if (_titleController.text.trim().isEmpty ||
         amountIsInvalid ||
         _selectedDate == null) {
-          showAlertDialog();
-         return;
+      showAlertDialog();
+      return;
     }
 
-    widget.onAddExpense( // if you want to use passed method or var to the class use widget keyword.
+    widget.onAddExpense(
+      // if you want to use passed method or var to the class use widget keyword.
       Expense(
           title: _titleController.text,
           amount: double.tryParse(_amountController.text)!,
           date: _selectedDate!,
-          category: _selectedCategory
-        ),
+          category: _selectedCategory),
     );
   }
 
@@ -199,7 +199,7 @@ class _NewExpenseState extends State<NewExpense> {
                   ),
                   onPressed: () {
                     _submitExpenseData();
-                   Navigator.pop(context);
+                    Navigator.pop(context);
                   },
                   child: const Text("SAVE"),
                 ),
