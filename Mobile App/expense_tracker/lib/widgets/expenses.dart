@@ -1,5 +1,3 @@
-
-
 import 'package:expense_tracker/widgets/chart/chart.dart';
 import 'package:expense_tracker/widgets/expenses_list/expenses_list.dart';
 import 'package:expense_tracker/models/expense.dart';
@@ -37,7 +35,9 @@ class _ExpensesState extends State<Expenses> {
   void _openExpenseOverlay() {
     showModalBottomSheet(
       context: context,
-      isScrollControlled: MediaQuery.of(context).size.width > 600 ? true : false , //for allocating it fullScreen when in landScape
+      isScrollControlled: MediaQuery.of(context).size.width > 600
+          ? true
+          : false, //for allocating it fullScreen when in landScape
       useSafeArea: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
@@ -114,9 +114,10 @@ class _ExpensesState extends State<Expenses> {
             )
           : Row(
               children: [
-                Expanded(//the chart widget takes as much width as 
-                //possible(check chart.dart) which will cause UI problem 
-                //to avoid this use expanded.
+                Expanded(
+                  //the chart widget takes as much width as
+                  //possible(check chart.dart) which will cause UI problem
+                  //to avoid this use expanded.
                   child: Chart(expenses: _registeredExpenses),
                 ),
                 Expanded(
